@@ -2,4 +2,7 @@
   <h1>Starter ngrx</h1>
 
   <button class="btn btn-primary" (click)="changeUserName()">Change user name</button>
+
+  <h4>User name: {{ (user | async).username }}</h4>
+  <h4>Role: {{ (user | async).isAdmin }}</h4>
 </div>
