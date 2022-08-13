@@ -1,3 +1,4 @@
+import { User } from './models/user';
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -13,7 +14,7 @@ import { changeUserName, initAction } from 'src/app/state/01-actions';
 export class AppComponent implements OnInit {
   title='starter-ngrx';
   test = 55.22
-  public user: Observable<any>={} as Observable<any>;
+  public user: Observable<User>={} as Observable<User>;
 
   constructor(private store: Store<State>) {}
 

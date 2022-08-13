@@ -1,20 +1,22 @@
-import { User } from '../models/user';
+import { User } from './../models/user';
 import { ActionReducer, createReducer, MetaReducer, on } from "@ngrx/store";
 import { changeUserName, initAction } from "./01-actions";
 
+
 export interface State {
-  root: {
-    appName: string;
-    user: {
-      isAdmin: boolean;
-      userName: string;
-    }
-  }
+  root: RootState;
+}
+export interface RootState {
+  appName: string;
+  user: User;
 }
 
-const initialState={
+const initialState: RootState={
   appName: 'NgRx',
-  user: User
+  user: {
+    username: '',
+    isAdmin: false
+  }
 };
 
 const log=(reducer: ActionReducer<State>): ActionReducer<State> => {
