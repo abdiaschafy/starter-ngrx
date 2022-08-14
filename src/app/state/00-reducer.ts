@@ -3,8 +3,10 @@ import { Action, ActionReducer, createReducer, MetaReducer, on } from "@ngrx/sto
 import { changeUserName, initAction } from "./01-actions";
 
 
+export const ROOT_FEATURE_KEY='root';
+
 export interface State {
-  root: RootState;
+  readonly [ROOT_FEATURE_KEY]: RootState;
 }
 export interface RootState {
   appName: string;
