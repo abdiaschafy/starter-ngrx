@@ -17,9 +17,16 @@ import { environment } from '../environments/environment';
     StoreModule.forRoot({
       [ROOT_FEATURE_KEY]: rootReducer
     }, {
-      metaReducers: metaReducers
+      metaReducers: metaReducers,
+      runtimeChecks: {
+        strictActionTypeUniqueness: true
+      }
     }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    StoreDevtoolsModule.instrument({
+      name: 'NgRx Starter',
+      maxAge: 25,
+      logOnly: environment.production
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

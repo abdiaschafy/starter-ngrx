@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { State } from 'src/app/state/00-reducer';
-import { changeUserName, initAction } from 'src/app/state/01-actions';
+import { changeIsAdmin, changeUserName, initAction } from 'src/app/state/01-actions';
 import { getUser } from './state/02-selectors';
 
 @Component({
@@ -28,5 +28,6 @@ export class AppComponent implements OnInit {
 
   public changeUserName=(): void => {
     this.store.dispatch(changeUserName({ username: `Abdias ${Math.random()}`}));
+    this.store.dispatch(changeIsAdmin({ isAdmin: false}));
   }
 }
