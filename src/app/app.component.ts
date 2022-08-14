@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { State } from 'src/app/state/00-reducer';
 import { RootActions } from 'src/app/state/01-actions';
 import { getUser } from './state/02-selectors';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -17,13 +18,17 @@ export class AppComponent implements OnInit {
   test = 55.22
   public user: Observable<User>={} as Observable<User>;
 
-  constructor(private store: Store<State>) {}
+  constructor(
+    private store: Store<State>,
+    private http: HttpClient
+  ) { }
 
   ngOnInit(): void {
     this.store.dispatch(RootActions.initApp());
-    // this.user = this.store.select((state: State) => state.root.user);
-    // this.user=this.store.pipe(select((state: State) => state.root.user));
+
     this.user=this.store.pipe(select(getUser));
+
+    this.http.get('api/users').subscribe(value => console.log(value));
   }
 
   public changeUserName=(): void => {
