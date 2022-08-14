@@ -19,7 +19,8 @@ import { environment } from '../environments/environment';
     }, {
       metaReducers: metaReducers,
       runtimeChecks: {
-        strictActionTypeUniqueness: true
+        strictActionTypeUniqueness: true,
+        strictStateImmutability: true
       }
     }),
     StoreDevtoolsModule.instrument({
