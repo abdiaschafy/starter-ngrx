@@ -1,5 +1,5 @@
 import { User } from './../models/user';
-import { ActionReducer, createReducer, MetaReducer, on } from "@ngrx/store";
+import { Action, ActionReducer, createReducer, MetaReducer, on } from "@ngrx/store";
 import { changeUserName, initAction } from "./01-actions";
 
 
@@ -35,8 +35,8 @@ const log=(reducer: ActionReducer<State>): ActionReducer<State> => {
 
 export const metaReducers: MetaReducer[]=[log];
 
-export const rootReducer=createReducer(initialState,
-  on(initAction, (state) => {
+export const rootReducer=createReducer<RootState, Action>(initialState,
+  on(initAction, (state: RootState) => {
 
     return {
       ...state,
@@ -46,7 +46,7 @@ export const rootReducer=createReducer(initialState,
       }
     }
   }),
-  on(changeUserName, (state, props) => {
+  on(changeUserName, (state: RootState, props) => {
     return {
       ...state,
       user: {
