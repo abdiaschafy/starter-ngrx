@@ -11,6 +11,7 @@ export interface State {
 export interface RootState {
   appName: string;
   user: User;
+  users?: User[];
 }
 
 const initialState: RootState={
