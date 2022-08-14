@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { State } from 'src/app/state/00-reducer';
-import { changeIsAdmin, changeUserName, initAction } from 'src/app/state/01-actions';
+import { RootActions } from 'src/app/state/01-actions';
 import { getUser } from './state/02-selectors';
 
 @Component({
@@ -20,14 +20,14 @@ export class AppComponent implements OnInit {
   constructor(private store: Store<State>) {}
 
   ngOnInit(): void {
-    this.store.dispatch(initAction());
+    this.store.dispatch(RootActions.initApp());
     // this.user = this.store.select((state: State) => state.root.user);
     // this.user=this.store.pipe(select((state: State) => state.root.user));
     this.user=this.store.pipe(select(getUser));
   }
 
   public changeUserName=(): void => {
-    this.store.dispatch(changeUserName({ username: `Abdias ${Math.random()}`}));
-    this.store.dispatch(changeIsAdmin({ isAdmin: false}));
+    this.store.dispatch(RootActions.changeUserName({ username: `Abdias ${Math.random()}`}));
+    this.store.dispatch(RootActions.changeIsAdmin({ isAdmin: false}));
   }
 }

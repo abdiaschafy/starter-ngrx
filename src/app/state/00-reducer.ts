@@ -1,6 +1,6 @@
 import { User } from './../models/user';
 import { Action, ActionReducer, createReducer, MetaReducer, on } from "@ngrx/store";
-import { changeUserName, initAction } from "./01-actions";
+import { RootActions } from "./01-actions";
 
 
 export const ROOT_FEATURE_KEY='root';
@@ -39,7 +39,7 @@ const log=(reducer: ActionReducer<State>): ActionReducer<State> => {
 export const metaReducers: MetaReducer[]=[log];
 
 export const rootReducer=createReducer<RootState, Action>(initialState,
-  on(initAction, (state: RootState) => {
+  on(RootActions.initApp, (state: RootState) => {
 
     return {
       ...state,
@@ -49,7 +49,7 @@ export const rootReducer=createReducer<RootState, Action>(initialState,
       }
     }
   }),
-  on(changeUserName, (state: RootState, props) => {
+  on(RootActions.changeUserName, (state: RootState, props) => {
     return {
       ...state,
       user: {
