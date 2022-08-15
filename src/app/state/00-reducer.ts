@@ -12,6 +12,7 @@ export interface RootState {
   appName: string;
   user: User;
   users: User[];
+  loaded?: boolean
 }
 
 const initialState: RootState={
@@ -61,13 +62,15 @@ export const rootReducer=createReducer<RootState, Action>(initialState,
   }),
   on(UsersActions.loadUsers, (state: RootState) => {
     return {
-      ...state
+      ...state,
+      loaded: false
     }
   }),
   on(UsersActions.loadUsersSuccess, (state: RootState, props) => {
     return {
       ...state,
-      users: props.users
+      users: props.users,
+      loaded: true
     }
   })
 );
