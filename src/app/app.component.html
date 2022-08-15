@@ -1,7 +1,10 @@
-<div class="container">
-  <h1>Starter ngrx</h1>
+<div class="container mt-5">
 
-  <button class="btn btn-primary" (click)="changeUserName()">Change user name</button>
+  <button class="btn btn-outline-primary" routerLink="/books">
+    Books
+  </button>
+
+  <button class="btn btn-primary ms-3" (click)="changeUserName()">Change user name</button>
 
   <h4>User name: {{ (user$ | async)?.username }}</h4>
   <h4>Role: {{ (user$ | async)?.isAdmin }}</h4>
@@ -40,4 +43,8 @@
       </tbody>
     </table>
   </ng-container>
+</div>
+
+<div class="container mt-5">
+  <router-outlet></router-outlet>
 </div>

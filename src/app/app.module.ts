@@ -12,7 +12,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './state/03-effects';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { HttpClientModule } from '@angular/common/http';
-import { BooksModule } from './modules/books/books.module';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,6 @@ import { BooksModule } from './modules/books/books.module';
   imports: [
     BrowserModule,
     HttpClientModule,
-    BooksModule,
     StoreModule.forRoot({
       [ROOT_FEATURE_KEY]: rootReducer
     }, {
@@ -37,7 +36,8 @@ import { BooksModule } from './modules/books/books.module';
       logOnly: environment.production
     }),
     EffectsModule.forRoot([AppEffects]),
-    InMemoryWebApiModule.forRoot(UsersData)
+    InMemoryWebApiModule.forRoot(UsersData),
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
