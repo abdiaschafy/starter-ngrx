@@ -5,4 +5,6 @@
 
   <h4>User name: {{ (user | async)?.username }}</h4>
   <h4>Role: {{ (user | async)?.isAdmin }}</h4>
+
+  <button class="btn btn-success" (click)="loadUsers()">Load users</button>
 </div>
