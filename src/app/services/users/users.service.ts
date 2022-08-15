@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 })
 export class UsersService {
 
-  private USER_API_URL='api/users';
+  private USER_API_URL='api/userss';
 
   constructor(private http: HttpClient) { }
 

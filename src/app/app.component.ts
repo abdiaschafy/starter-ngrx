@@ -4,7 +4,8 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { State } from 'src/app/state/00-reducer';
 import { UsersActions, RootActions } from 'src/app/state/01-actions';
-import { getIsLoaded, getUser, getUsers } from './state/02-selectors';
+import { getError, getIsLoaded, getUser, getUsers } from './state/02-selectors';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ export class AppComponent implements OnInit {
   public user$: Observable<User>={} as Observable<User>;
   public users$: Observable<User[]>;
   public isLoaded$: Observable<boolean>;
+  public errorMessage$: Observable<HttpErrorResponse | Error | string>;
 
   constructor(private store: Store<State>) { }
 
@@ -27,6 +29,7 @@ export class AppComponent implements OnInit {
     this.user$=this.store.pipe(select(getUser));
     this.users$=this.store.pipe(select(getUsers));
     this.isLoaded$=this.store.pipe(select(getIsLoaded));
+    this.errorMessage$=this.store.pipe(select(getError));
   }
 
   public changeUserName=(): void => {

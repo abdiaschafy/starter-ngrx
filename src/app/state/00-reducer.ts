@@ -1,6 +1,7 @@
 import { User } from './../models/user';
 import { Action, ActionReducer, createReducer, MetaReducer, on } from "@ngrx/store";
 import { RootActions, UsersActions } from "./01-actions";
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 export const ROOT_FEATURE_KEY='root';
@@ -12,7 +13,8 @@ export interface RootState {
   appName: string;
   user: User;
   users: User[];
-  loaded?: boolean
+  loaded?: boolean,
+  error?: HttpErrorResponse | Error | string
 }
 
 const initialState: RootState={
@@ -21,7 +23,8 @@ const initialState: RootState={
     username: '',
     isAdmin: false
   },
-  users: []
+  users: [],
+  error: null
 };
 
 const log=(reducer: ActionReducer<State>): ActionReducer<State> => {
@@ -29,9 +32,9 @@ const log=(reducer: ActionReducer<State>): ActionReducer<State> => {
     const currentState=reducer(state, action);
 
     console.groupCollapsed(action.type);
-    console.log('Etat précédent ', state);
+    console.log('État précédent ', state);
     console.log('Action ', action);
-    console.log('Etat suivant ', currentState);
+    console.log('État suivant ', currentState);
     console.groupEnd();
 
     return currentState;
@@ -71,6 +74,14 @@ export const rootReducer=createReducer<RootState, Action>(initialState,
       ...state,
       users: props.users,
       loaded: true
+    }
+  }),
+  on(UsersActions.loadUsersError, (state: RootState, props) => {
+    return {
+      ...state,
+      users: [],
+      loaded: true,
+      error: props.error
     }
   })
 );
