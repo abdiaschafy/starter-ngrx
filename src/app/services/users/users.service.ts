@@ -1,5 +1,5 @@
 import { User } from './../../models/user';
-import { Observable } from 'rxjs';
+import { delay, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -13,6 +13,8 @@ export class UsersService {
   constructor(private http: HttpClient) { }
 
   public getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.USER_API_URL);
+    return this.http.get<User[]>(this.USER_API_URL).pipe(
+      delay(3000)
+    );
   }
 }

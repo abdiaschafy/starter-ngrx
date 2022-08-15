@@ -3,8 +3,27 @@
 
   <button class="btn btn-primary" (click)="changeUserName()">Change user name</button>
 
-  <h4>User name: {{ (user | async)?.username }}</h4>
-  <h4>Role: {{ (user | async)?.isAdmin }}</h4>
+  <h4>User name: {{ (user$ | async)?.username }}</h4>
+  <h4>Role: {{ (user$ | async)?.isAdmin }}</h4>
 
   <button class="btn btn-success" (click)="loadUsers()">Load users</button>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">User name</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let user of (users$ | async)">
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.isAdmin }}</td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
 </div>

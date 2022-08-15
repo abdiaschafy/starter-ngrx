@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { State } from 'src/app/state/00-reducer';
-import { loadUsers, RootActions } from 'src/app/state/01-actions';
-import { getUser } from './state/02-selectors';
+import { UsersActions, RootActions } from 'src/app/state/01-actions';
+import { getUser, getUsers } from './state/02-selectors';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -15,8 +15,9 @@ import { HttpClient } from '@angular/common/http';
 
 export class AppComponent implements OnInit {
   title='starter-ngrx';
-  test = 55.22
-  public user: Observable<User>={} as Observable<User>;
+
+  public user$: Observable<User>={} as Observable<User>;
+  public users$!: Observable<User[]>;
 
   constructor(
     private store: Store<State>,
@@ -26,9 +27,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(RootActions.initApp());
 
-    this.user=this.store.pipe(select(getUser));
-
-    this.http.get('api/users').subscribe(value => console.log(value));
+    this.user$=this.store.pipe(select(getUser));
+    this.users$=this.store.pipe(select(getUsers));
   }
 
   public changeUserName=(): void => {
@@ -37,6 +37,6 @@ export class AppComponent implements OnInit {
   }
 
   public loadUsers(): void {
-    this.store.dispatch(loadUsers());
+    this.store.dispatch(UsersActions.loadUsers());
   }
 }

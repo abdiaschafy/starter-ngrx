@@ -2,7 +2,7 @@ import { UsersService } from './../services/users/users.service';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, mergeMap, tap } from 'rxjs';
-import * as UsersActions from '../state/01-actions';
+import { UsersActions } from '../state/01-actions';
 import { User } from '../models/user';
 
 @Injectable()
