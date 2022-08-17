@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Book } from 'src/app/models/book';
 
-import * as BooksActions from '../state/actions/books/books.actions'
+import * as BooksActions from './state/actions/books/books.actions'
 @Component({
   selector: 'app-books',
   templateUrl: './books.component.html',

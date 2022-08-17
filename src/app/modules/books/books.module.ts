@@ -4,7 +4,7 @@ import { StoreModule } from '@ngrx/store';
 import * as fromBook from './state/reducers/book/book.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { BookEffects } from './state/effects/book/book.effects';
-import { BooksComponent } from './books/books.component';
+import { BooksComponent } from '../books/books.component';
 import { Route, RouterModule } from '@angular/router';
 
 const routes: Route[]=[
