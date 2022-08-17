@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
-import * as fromBook from './state';
+import * as fromBook from './state/reducers/book/book.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { BookEffects } from './state/effects/book/book.effects';
 import { BooksComponent } from './books/books.component';
@@ -17,7 +17,7 @@ const routes: Route[]=[
   ],
   imports: [
     CommonModule,
-    StoreModule.forFeature(fromBook.bookFeatureKey, fromBook.reducers, { metaReducers: fromBook.metaReducers }),
+    StoreModule.forFeature(fromBook.booksFeatureKey, fromBook.reducer),
     EffectsModule.forFeature([BookEffects]),
     RouterModule.forChild(routes)
   ]

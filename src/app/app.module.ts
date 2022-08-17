@@ -1,4 +1,4 @@
-import { UsersData } from './api/users.data';
+import { Data } from './api/data';
 import { ROOT_FEATURE_KEY } from './state/00-reducer';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -36,7 +36,7 @@ import { AppRoutingModule } from './app-routing.module';
       logOnly: environment.production
     }),
     EffectsModule.forRoot([AppEffects]),
-    InMemoryWebApiModule.forRoot(UsersData),
+    InMemoryWebApiModule.forRoot(Data),
     AppRoutingModule
   ],
   providers: [],
