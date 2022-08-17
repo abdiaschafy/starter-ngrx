@@ -1,11 +1,12 @@
+import { Observable } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+
 import { User } from './models/user';
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { State } from 'src/app/state/00-reducer';
 import { UsersActions, RootActions } from 'src/app/state/01-actions';
 import { getError, getIsLoaded, getUser, getUsers } from './state/02-selectors';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
