@@ -6,6 +6,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { BookEffects } from './state/effects/book/book.effects';
 import { BooksComponent } from '../books/books.component';
 import { Route, RouterModule } from '@angular/router';
+import { ListComponent } from './components/list/list.component';
+import { FormComponent } from './components/form/form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Route[]=[
   { path: '', component: BooksComponent }
@@ -13,13 +16,16 @@ const routes: Route[]=[
 
 @NgModule({
   declarations: [
-    BooksComponent
+    BooksComponent,
+    ListComponent,
+    FormComponent
   ],
   imports: [
     CommonModule,
     StoreModule.forFeature(fromBook.booksFeatureKey, fromBook.reducer),
     EffectsModule.forFeature([BookEffects]),
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ReactiveFormsModule
   ]
 })
 export class BooksModule { }
