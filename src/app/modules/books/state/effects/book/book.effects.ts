@@ -1,5 +1,4 @@
 import { BooksService } from '../../../../books/services/books.service';
-import { loadBooksFailure } from './../../actions/books/books.actions';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
@@ -29,6 +28,14 @@ export class BookEffects {
     mergeMap(( { book } ) => this.booksService.addBook(book).pipe(
       map((book: Book) => BooksActions.addBookActions.addBookSuccess({ book })),
       catchError(error => of(BooksActions.addBookActions.addBookError({ error: error.body.error })))
+    ))
+  ));
+
+  deleteBook$=createEffect(() => this.actions$.pipe(
+    ofType(BooksActions.deleteBookActions.deleteBook),
+    mergeMap(( { id } ) => this.booksService.deleteBook(id).pipe(
+      map(() => BooksActions.deleteBookActions.deleteBookSuccess({ id })),
+      catchError(error => of(BooksActions.deleteBookActions.deleteBookError({ error: error })))
     ))
   ));
 }

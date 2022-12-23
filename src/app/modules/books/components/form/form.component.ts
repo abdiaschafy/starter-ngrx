@@ -25,7 +25,6 @@ export class FormComponent implements OnInit {
   }
 
   public onSubmit() {
-    console.log('MY FORM ', this.booksForm.value);
     this.store.dispatch(addBookActions.addBook({ book: this.booksForm.value }));
   }
 

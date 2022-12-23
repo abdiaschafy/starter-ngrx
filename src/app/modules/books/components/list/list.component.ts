@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Book } from 'src/app/models/book';
+import { deleteBookActions } from '../../state/actions/books/books.actions';
 
 @Component({
   selector: 'app-list',
@@ -17,6 +18,10 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.books$=this.store.pipe(select(getBooks));
+  }
+
+  deleteBook(id: number): void {
+    this.store.dispatch(deleteBookActions.deleteBook({id}));
   }
 
 }

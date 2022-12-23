@@ -20,4 +20,8 @@ export class BooksService {
     const body: Book = { ...book, id: null };
     return this.http.post<Book>(this.BOOKS_API_URL, body);
   }
+
+  public deleteBook(id: number): Observable<{}> {
+    return this.http.delete<Book>(`${this.BOOKS_API_URL}/${id}`);
+  }
 }

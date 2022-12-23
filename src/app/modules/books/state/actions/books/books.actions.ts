@@ -23,4 +23,22 @@ export const addBookActions=createActionGroup({
     'Add book success': props<{ book: Book }>(),
     'Add book error': props<{ error: HttpErrorResponse | Error | string }>(),
   }
-})
+});
+
+export const deleteBookActions=createActionGroup({
+  source: 'Books',
+  events: {
+    'Delete book': props<{ id: number }>(),
+    'Delete book success': props<{ id: number }>(),
+    'Delete book error': props<{ error: HttpErrorResponse | Error | string }>(),
+  }
+});
+
+export const updateBookActions=createActionGroup({
+  source: 'Books',
+  events: {
+    'Update book': props<{ book: Book }>(),
+    'Update book success': props<{ book: Book }>(),
+    'Update book error': props<{ error: HttpErrorResponse | Error | string }>(),
+  }
+});

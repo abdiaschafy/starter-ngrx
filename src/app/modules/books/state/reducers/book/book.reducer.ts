@@ -25,6 +25,27 @@ export const reducer = createReducer(
       ...state,
       books
     }
+  }),
+  on(BooksActions.addBookActions.addBook, (state) => {
+    return {
+      ...state
+    }
+  }),
+  on(BooksActions.addBookActions.addBookSuccess, (state, {book}) => {
+    return {
+      ...state,
+      books: [...state.books, book]
+    }
+  }),
+  on(BooksActions.deleteBookActions.deleteBook, (state) => {
+    return {
+      ...state
+    }
+  }),
+  on(BooksActions.deleteBookActions.deleteBookSuccess, (state, {id}) => {
+    return {
+      ...state,
+      books: state.books.filter((book: Book) => book.id !== id)
+    }
   })
-
 );
