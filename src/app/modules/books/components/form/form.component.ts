@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { addBookActions } from '../../state/actions/books/books.actions';
 
 @Component({
   selector: 'app-form',
@@ -10,7 +12,7 @@ export class FormComponent implements OnInit {
 
   public booksForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private store: Store) { }
 
   ngOnInit(): void {
 
@@ -24,6 +26,7 @@ export class FormComponent implements OnInit {
 
   public onSubmit() {
     console.log('MY FORM ', this.booksForm.value);
+    this.store.dispatch(addBookActions.addBook({ book: this.booksForm.value }));
   }
 
 }

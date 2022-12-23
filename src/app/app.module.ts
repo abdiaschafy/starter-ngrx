@@ -37,7 +37,8 @@ import { AppRoutingModule } from './app-routing.module';
     }),
     EffectsModule.forRoot([AppEffects]),
     InMemoryWebApiModule.forRoot(Data),
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot({}, {})
   ],
   providers: [],
   bootstrap: [AppComponent]
