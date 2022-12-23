@@ -23,4 +23,12 @@ export class BookEffects {
       catchError(error => of(BooksActions.loadBooksFailure({ error: error.body.error })))
     ))
   ));
+
+  addBook$=createEffect(() => this.actions$.pipe(
+    ofType(BooksActions.addBookActions.addBook),
+    mergeMap(( { book } ) => this.booksService.addBook(book).pipe(
+      map((book: Book) => BooksActions.addBookActions.addBookSuccess({ book })),
+      catchError(error => of(BooksActions.addBookActions.addBookError({ error: error.body.error })))
+    ))
+  ));
 }

@@ -28,15 +28,13 @@ export class Data implements InMemoryDbService {
         name: 'Book 1',
         author: 'Author 1',
         publisher: 'Publisher 1'
-      },
-      {
-        id: 0,
-        name: 'Book 2',
-        author: 'Author 2',
-        publisher: 'Publisher 2'
       }
     ];
 
     return { users, books };
+  }
+
+  genId(books: Book[]): number {
+    return books.length > 0 ? Math.max(...books.map(book => book.id)) + 1 : 1;
   }
 }

@@ -19,8 +19,8 @@ export const loadBooksFailure = createAction(
 export const addBookActions=createActionGroup({
   source: 'Books',
   events: {
-    'Add book': props<{ book: Book[] }>(),
-    'Add book success': props<{ book: Book[] }>(),
+    'Add book': props<{ book: Book }>(),
+    'Add book success': props<{ book: Book }>(),
     'Add book error': props<{ error: HttpErrorResponse | Error | string }>(),
   }
 })
