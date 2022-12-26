@@ -4,3 +4,5 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 const selectBooksFeature=createFeatureSelector<BooksState>(booksFeatureKey);
 
 export const getBooks=createSelector(selectBooksFeature, (state: BooksState) => state.books);
+
+export const getBooksError=createSelector(selectBooksFeature, (state: BooksState) => state.error);

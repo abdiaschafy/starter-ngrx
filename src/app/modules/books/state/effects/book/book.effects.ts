@@ -35,7 +35,7 @@ export class BookEffects {
     ofType(BooksActions.deleteBookActions.deleteBook),
     mergeMap(( { id } ) => this.booksService.deleteBook(id).pipe(
       map(() => BooksActions.deleteBookActions.deleteBookSuccess({ id })),
-      catchError(error => of(BooksActions.deleteBookActions.deleteBookError({ error: error })))
+      catchError(error => of(BooksActions.deleteBookActions.deleteBookError({ error: error.body.error })))
     ))
   ));
 
@@ -43,7 +43,7 @@ export class BookEffects {
     ofType(BooksActions.updateBookActions.updateBook),
     mergeMap(( { book } ) => this.booksService.updateBook(book).pipe(
       map(( ) => BooksActions.updateBookActions.updateBookSuccess({ book })),
-      catchError(error => of(BooksActions.updateBookActions.updateBookError({ error: error })))
+      catchError(error => of(BooksActions.updateBookActions.updateBookError({ error: error.body.error })))
     ))
   ));
 }

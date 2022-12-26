@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, createActionGroup, props } from '@ngrx/store';
 import { Book } from 'src/app/models/book';
+import { ErrorType } from 'src/app/models/error';
 
 export const loadBooks = createAction(
   '[Books] Load Books'
@@ -13,7 +14,7 @@ export const loadBooksSuccess = createAction(
 
 export const loadBooksFailure = createAction(
   '[Books] Load Books Failure',
-  props<{ error: any }>()
+  props<{ error: ErrorType }>()
 );
 
 export const addBookActions=createActionGroup({

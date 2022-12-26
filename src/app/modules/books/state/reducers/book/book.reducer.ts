@@ -1,6 +1,7 @@
 import { Book } from './../../../../../models/book';
 import { Action, createReducer, on } from '@ngrx/store';
-import * as BooksActions from '../../actions/books/books.actions'
+import * as BooksActions from '../../actions/books/books.actions';
+import { ErrorType } from 'src/app/models/error';
 
 
 export const booksFeatureKey = 'books';
@@ -8,6 +9,7 @@ export const booksFeatureKey = 'books';
 export interface BooksState {
   books: Book[];
   book: Book | null;
+  error?: ErrorType;
 }
 export interface State {
   readonly [booksFeatureKey]: BooksState;
@@ -15,7 +17,8 @@ export interface State {
 
 export const initialState: BooksState = {
   books: [],
-  book: null
+  book: null,
+  error: null
 };
 
 export const reducer = createReducer(
@@ -24,6 +27,12 @@ export const reducer = createReducer(
     return {
       ...state,
       books
+    }
+  }),
+  on(BooksActions.loadBooksFailure, (state, { error }) => {
+    return {
+      ...state,
+      error: error
     }
   }),
   on(BooksActions.addBookActions.addBook, (state) => {
@@ -58,6 +67,12 @@ export const reducer = createReducer(
     return {
       ...state,
       books: updatedBooks
+    }
+  }),
+  on(BooksActions.updateBookActions.updateBookError, (state, { error }) => {
+    return {
+      ...state,
+      error: error
     }
   })
 );
