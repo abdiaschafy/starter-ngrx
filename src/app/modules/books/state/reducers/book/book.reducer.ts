@@ -47,5 +47,17 @@ export const reducer = createReducer(
       ...state,
       books: state.books.filter((book: Book) => book.id !== id)
     }
+  }),
+  on(BooksActions.updateBookActions.updateBook, (state) => {
+    return {
+      ...state
+    }
+  }),
+  on(BooksActions.updateBookActions.updateBookSuccess, (state, {book}) => {
+    const updatedBooks: Book[] = state.books.map((existingBook: Book) => existingBook.id === existingBook.id ? book : existingBook);
+    return {
+      ...state,
+      books: updatedBooks
+    }
   })
 );

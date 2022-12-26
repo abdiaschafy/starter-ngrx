@@ -38,4 +38,12 @@ export class BookEffects {
       catchError(error => of(BooksActions.deleteBookActions.deleteBookError({ error: error })))
     ))
   ));
+
+  updateBook$=createEffect(() => this.actions$.pipe(
+    ofType(BooksActions.updateBookActions.updateBook),
+    mergeMap(( { book } ) => this.booksService.updateBook(book).pipe(
+      map(( ) => BooksActions.updateBookActions.updateBookSuccess({ book })),
+      catchError(error => of(BooksActions.updateBookActions.updateBookError({ error: error })))
+    ))
+  ));
 }
